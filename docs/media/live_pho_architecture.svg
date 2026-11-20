@@ -1,0 +1,165 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2000 1120" width="2000" height="1120">
+  <defs>
+    <linearGradient id="archBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0b0f19" />
+      <stop offset="50%" stop-color="#151926" />
+      <stop offset="100%" stop-color="#1a1110" />
+    </linearGradient>
+    <linearGradient id="box1" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1e293b" />
+      <stop offset="100%" stop-color="#0f172a" />
+    </linearGradient>
+    <marker id="arrowGold" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#f59e0b" />
+    </marker>
+    <marker id="arrowBlue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#38bdf8" />
+    </marker>
+    <marker id="arrowGreen" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#34d399" />
+    </marker>
+  </defs>
+
+  <rect width="2000" height="1120" fill="url(#archBg)" />
+  <rect x="30" y="30" width="1940" height="1060" rx="28" fill="none" stroke="#f59e0b" stroke-opacity="0.3" stroke-width="2" />
+
+  <!-- Header -->
+  <text x="1000" y="92" font-family="Segoe UI, Arial, sans-serif" font-size="40" font-weight="900" fill="#fde68a" text-anchor="middle">KIẾN TRÚC KỸ THUẬT LIVE-PHO-TIKTOK (PHỞ CÔ BA 3D — SYSTEM ARCHITECTURE)</text>
+  <text x="1000" y="135" font-family="Segoe UI, Arial, sans-serif" font-size="22" font-weight="500" fill="#94a3b8" text-anchor="middle">Dual TikTok LIVE Ingestion • 3-Tier Vietnamese AI TTS • Web Audio Procedural Synth • Three.js r170 InstancedMesh Stage</text>
+
+  <!-- COLUMN 1: TIKTOK LIVE INGESTION -->
+  <g transform="translate(65, 185)">
+    <rect x="0" y="0" width="420" height="820" rx="22" fill="url(#box1)" stroke="#f43f5e" stroke-width="3" />
+    <rect x="0" y="0" width="420" height="64" rx="22" fill="#881337" />
+    <text x="210" y="41" font-family="Segoe UI, Arial, sans-serif" font-size="24" font-weight="800" fill="#ffe4e6" text-anchor="middle">1. THU NHẬN SỰ KIỆN TIKTOK LIVE</text>
+
+    <!-- Direct Connector Box -->
+    <rect x="24" y="95" width="372" height="310" rx="16" fill="#1e1b2e" stroke="#fb7185" stroke-width="2" />
+    <text x="210" y="135" font-family="Segoe UI, Arial, sans-serif" font-size="22" font-weight="800" fill="#fda4af" text-anchor="middle">A. Kết nối trực tiếp (@username)</text>
+    <text x="210" y="165" font-family="Segoe UI, Arial, sans-serif" font-size="18" font-weight="600" fill="#cbd5e1" text-anchor="middle">tiktok-live-connector v2.5</text>
+    <text x="42" y="205" font-family="Segoe UI, Arial, sans-serif" font-size="18" fill="#e2e8f0">• Không cần phần mềm trung gian</text>
+    <text x="42" y="238" font-family="Segoe UI, Arial, sans-serif" font-size="18" fill="#e2e8f0">• Tự tính delta combo quà (streak)</text>
+    <text x="42" y="271" font-family="Segoe UI, Arial, sans-serif" font-size="18" fill="#e2e8f0">• Map tên/ID quà &amp; bậc xu (1..1000+)</text>
+    <text x="42" y="304" font-family="Segoe UI, Arial, sans-serif" font-size="18" fill="#e2e8f0">• Chống spam Join/Like/Follow/Chat</text>
+    <text x="42" y="337" font-family="Segoe UI, Arial, sans-serif" font-size="18" fill="#e2e8f0">• Exponential Backoff Reconnect</text>
+    <text x="42" y="370" font-family="Segoe UI, Arial, sans-serif" font-size="18" fill="#fde68a">• Sự kiện: GIFT, MEMBER, LIKE, CHAT</text>
+
+    <!-- TikFinity Bridge Box -->
+    <rect x="24" y="435" width="372" height="355" rx="16" fill="#1e1b2e" stroke="#38bdf8" stroke-width="2" />
+    <text x="210" y="475" font-family="Segoe UI, Arial, sans-serif" font-size="22" font-weight="800" fill="#7dd3fc" text-anchor="middle">B. Cầu nối TikFinity (Port 4012)</text>
+    <text x="210" y="505" font-family="Segoe UI, Arial, sans-serif" font-size="18" font-weight="600" fill="#cbd5e1" text-anchor="middle">tikfinity-bridge.mjs (WS 21213)</text>
+    <text x="42" y="545" font-family="Segoe UI, Arial, sans-serif" font-size="18" fill="#e2e8f0">• Lắng nghe ws://127.0.0.1:21213/</text>
+    <text x="42" y="578" font-family="Segoe UI, Arial, sans-serif" font-size="18" fill="#e2e8f0">• GiftRouter khử trùng lặp 2 giờ</text>
+    <text x="42" y="611" font-family="Segoe UI, Arial, sans-serif" font-size="18" fill="#e2e8f0">• Chia lô quà lớn (chunk &lt;= 100 tô)</text>
+    <text x="42" y="644" font-family="Segoe UI, Arial, sans-serif" font-size="18" fill="#e2e8f0">• Không gửi lại HTTP mập mờ</text>
+    <text x="42" y="677" font-family="Segoe UI, Arial, sans-serif" font-size="18" fill="#e2e8f0">  (chống cộng trùng điểm VIP)</text>
+    <text x="42" y="715" font-family="Segoe UI, Arial, sans-serif" font-size="18" fill="#7dd3fc">• Cấu hình nóng qua gift-map.json</text>
+    <text x="42" y="750" font-family="Segoe UI, Arial, sans-serif" font-size="18" fill="#7dd3fc">• API: GET /status &amp; POST /config</text>
+  </g>
+
+  <!-- COLUMN 2: NODE.JS CORE SERVER & AI TTS -->
+  <g transform="translate(545, 185)">
+    <rect x="0" y="0" width="450" height="820" rx="22" fill="url(#box1)" stroke="#f59e0b" stroke-width="3" />
+    <rect x="0" y="0" width="450" height="64" rx="22" fill="#78350f" />
+    <text x="225" y="41" font-family="Segoe UI, Arial, sans-serif" font-size="24" font-weight="800" fill="#fef3c7" text-anchor="middle">2. SERVER TRUNG TÂM (PORT 4011)</text>
+
+    <!-- Core Server -->
+    <rect x="24" y="95" width="402" height="325" rx="16" fill="#172033" stroke="#fbbf24" stroke-width="2" />
+    <text x="225" y="135" font-family="Segoe UI, Arial, sans-serif" font-size="22" font-weight="800" fill="#fde68a" text-anchor="middle">server.mjs (HTTP + SSE + Poll)</text>
+    <text x="42" y="175" font-family="Segoe UI, Arial, sans-serif" font-size="18" fill="#e2e8f0">• SSE Stream: /api/events (Real-time)</text>
+    <text x="42" y="208" font-family="Segoe UI, Arial, sans-serif" font-size="18" fill="#e2e8f0">• Ring Journal 512 sự kiện (/api/poll)</text>
+    <text x="42" y="241" font-family="Segoe UI, Arial, sans-serif" font-size="18" fill="#e2e8f0">• Speaker Arbitration (chỉ 1 Stage phát</text>
+    <text x="42" y="271" font-family="Segoe UI, Arial, sans-serif" font-size="18" fill="#e2e8f0">  tiếng, tự tắt loa Admin chống vọng)</text>
+    <text x="42" y="304" font-family="Segoe UI, Arial, sans-serif" font-size="18" fill="#e2e8f0">• DNS Rebinding Guard (localhost/lvh.me)</text>
+    <text x="42" y="337" font-family="Segoe UI, Arial, sans-serif" font-size="18" fill="#e2e8f0">• Lưu tự động settings.json</text>
+    <text x="42" y="372" font-family="Segoe UI, Arial, sans-serif" font-size="18" fill="#fda4af">• POST /api/server/shutdown (Giải phóng</text>
+    <text x="42" y="400" font-family="Segoe UI, Arial, sans-serif" font-size="18" fill="#fda4af">  hoàn toàn cổng 4011 &amp; 4012)</text>
+
+    <!-- 3-Tier AI Voice -->
+    <rect x="24" y="445" width="402" height="345" rx="16" fill="#172033" stroke="#34d399" stroke-width="2" />
+    <text x="225" y="485" font-family="Segoe UI, Arial, sans-serif" font-size="22" font-weight="800" fill="#6ee7b7" text-anchor="middle">Hệ Thống Giọng Đọc AI 3 Tầng (/api/tts)</text>
+    <text x="42" y="525" font-family="Segoe UI, Arial, sans-serif" font-size="18" fill="#a7f3d0" font-weight="700">Tầng 1: VieNeu-TTS v3 Turbo (Local AI)</text>
+    <text x="42" y="553" font-family="Segoe UI, Arial, sans-serif" font-size="17" fill="#cbd5e1">  Giao thức nhị phân stdio • ONNX INT8 CPU</text>
+    <text x="42" y="590" font-family="Segoe UI, Arial, sans-serif" font-size="18" fill="#7dd3fc" font-weight="700">Tầng 2: Microsoft Edge Neural TTS</text>
+    <text x="42" y="618" font-family="Segoe UI, Arial, sans-serif" font-size="17" fill="#cbd5e1">  Hoài My (Nữ Cô Ba) &amp; Nam Minh (Ông Chủ)</text>
+    <text x="42" y="655" font-family="Segoe UI, Arial, sans-serif" font-size="18" fill="#fde68a" font-weight="700">Tầng 3: Google Translate TTS + WebSpeech</text>
+    <text x="42" y="683" font-family="Segoe UI, Arial, sans-serif" font-size="17" fill="#cbd5e1">  Dự phòng tự động 100% không mất tiếng</text>
+    <text x="42" y="725" font-family="Segoe UI, Arial, sans-serif" font-size="18" fill="#e2e8f0">• Bộ nhớ đệm LRU 160 câu thoại MP3/WAV</text>
+    <text x="42" y="758" font-family="Segoe UI, Arial, sans-serif" font-size="18" fill="#e2e8f0">• Tùy chỉnh tốc độ đọc: 0.85x / 1x / 1.15x / 1.3x</text>
+  </g>
+
+  <!-- COLUMN 3: THREE.JS 3D STAGE & WEB AUDIO -->
+  <g transform="translate(1055, 185)">
+    <rect x="0" y="0" width="420" height="820" rx="22" fill="url(#box1)" stroke="#38bdf8" stroke-width="3" />
+    <rect x="0" y="0" width="420" height="64" rx="22" fill="#0c4a6e" />
+    <text x="210" y="41" font-family="Segoe UI, Arial, sans-serif" font-size="24" font-weight="800" fill="#e0f2fe" text-anchor="middle">3. SÂN KHẤU 3D &amp; WEB AUDIO</text>
+
+    <!-- Three.js WebGL -->
+    <rect x="24" y="95" width="372" height="360" rx="16" fill="#172033" stroke="#38bdf8" stroke-width="2" />
+    <text x="210" y="135" font-family="Segoe UI, Arial, sans-serif" font-size="22" font-weight="800" fill="#7dd3fc" text-anchor="middle">Three.js r170 WebGL (1080 × 1920)</text>
+    <text x="42" y="175" font-family="Segoe UI, Arial, sans-serif" font-size="18" fill="#e2e8f0">• Quầy phở Việt Nam, nồi nước lèo bốc khói</text>
+    <text x="42" y="208" font-family="Segoe UI, Arial, sans-serif" font-size="18" fill="#e2e8f0">• Cô Ba đội nón lá múc nước lèo theo nhịp</text>
+    <text x="36" y="241" font-family="Segoe UI, Arial, sans-serif" font-size="17" fill="#e2e8f0">• 6 khay inox âm quầy (InstancedMesh):</text>
+    <text x="36" y="271" font-family="Segoe UI, Arial, sans-serif" font-size="15.5" fill="#fde68a">  Bò Tái • Nạm Gầu • Bò Viên • Gà Ta • Quẩy • Trứng</text>
+    <text x="36" y="304" font-family="Segoe UI, Arial, sans-serif" font-size="17" fill="#e2e8f0">• OrderQueue ưu tiên đơn thật trước đơn thử</text>
+    <text x="36" y="337" font-family="Segoe UI, Arial, sans-serif" font-size="17" fill="#e2e8f0">• 4 bàn inox ghế nhựa xanh/đỏ (ăn 9 giây)</text>
+    <text x="36" y="370" font-family="Segoe UI, Arial, sans-serif" font-size="17" fill="#e2e8f0">• Biển hiệu 3D vẽ bằng CanvasTexture động</text>
+    <text x="36" y="403" font-family="Segoe UI, Arial, sans-serif" font-size="17" fill="#e2e8f0">• Chế độ ?lite=1 (30 FPS tiết kiệm GPU)</text>
+
+    <!-- Web Audio Synth -->
+    <rect x="24" y="480" width="372" height="310" rx="16" fill="#172033" stroke="#c084fc" stroke-width="2" />
+    <text x="210" y="520" font-family="Segoe UI, Arial, sans-serif" font-size="22" font-weight="800" fill="#e9d5ff" text-anchor="middle">Web Audio API &amp; Auto-Ducking</text>
+    <text x="42" y="560" font-family="Segoe UI, Arial, sans-serif" font-size="18" fill="#e2e8f0">• Nhạc nền 90 BPM 16 khuông tự tổng hợp</text>
+    <text x="42" y="593" font-family="Segoe UI, Arial, sans-serif" font-size="18" fill="#e2e8f0">  bằng sóng âm (100% không bản quyền)</text>
+    <text x="42" y="626" font-family="Segoe UI, Arial, sans-serif" font-size="18" fill="#e2e8f0">• 7 hiệu ứng bếp: step, order, scoop,</text>
+    <text x="42" y="656" font-family="Segoe UI, Arial, sans-serif" font-size="18" fill="#e2e8f0">  plate, seat, serve, celebrate</text>
+    <text x="42" y="689" font-family="Segoe UI, Arial, sans-serif" font-size="18" fill="#fde68a">• Auto-Ducking: Tự hạ nhạc xuống 5% &amp;</text>
+    <text x="42" y="719" font-family="Segoe UI, Arial, sans-serif" font-size="18" fill="#fde68a">  khuếch đại giọng Cô Ba 1.55x khi đọc</text>
+    <text x="42" y="752" font-family="Segoe UI, Arial, sans-serif" font-size="18" fill="#e2e8f0">• 3 thanh trượt độc lập (Nhạc / Bếp / Cô Ba)</text>
+  </g>
+
+  <!-- COLUMN 4: OUTPUTS & ECOSYSTEM -->
+  <g transform="translate(1535, 185)">
+    <rect x="0" y="0" width="400" height="820" rx="22" fill="url(#box1)" stroke="#34d399" stroke-width="3" />
+    <rect x="0" y="0" width="400" height="64" rx="22" fill="#065f46" />
+    <text x="200" y="41" font-family="Segoe UI, Arial, sans-serif" font-size="24" font-weight="800" fill="#d1fae5" text-anchor="middle">4. PHÁT SÓNG &amp; ĐIỀU KHIỂN</text>
+
+    <!-- Admin Dashboard -->
+    <rect x="24" y="95" width="352" height="225" rx="16" fill="#172033" stroke="#34d399" stroke-width="2" />
+    <text x="200" y="132" font-family="Segoe UI, Arial, sans-serif" font-size="21" font-weight="800" fill="#6ee7b7" text-anchor="middle">Trang Admin Điều Khiển</text>
+    <text x="200" y="160" font-family="Segoe UI, Arial, sans-serif" font-size="17" fill="#fde68a" text-anchor="middle">http://localhost:4011</text>
+    <text x="40" y="195" font-family="Segoe UI, Arial, sans-serif" font-size="17" fill="#e2e8f0">• 5 thẻ điều khiển + Khung Preview 9:16</text>
+    <text x="40" y="225" font-family="Segoe UI, Arial, sans-serif" font-size="17" fill="#e2e8f0">• 9 nút giả lập khách &amp; quà trước khi live</text>
+    <text x="40" y="255" font-family="Segoe UI, Arial, sans-serif" font-size="17" fill="#e2e8f0">• Hẹn giờ tự tắt live (+15p..+120p)</text>
+    <text x="40" y="285" font-family="Segoe UI, Arial, sans-serif" font-size="17" fill="#e2e8f0">• Loa nghe thử tại Admin (Monitor)</text>
+
+    <!-- TikTok LIVE Studio -->
+    <rect x="24" y="345" width="352" height="210" rx="16" fill="#172033" stroke="#f59e0b" stroke-width="2" />
+    <text x="200" y="382" font-family="Segoe UI, Arial, sans-serif" font-size="21" font-weight="800" fill="#fde68a" text-anchor="middle">TikTok LIVE Studio / OBS</text>
+    <text x="200" y="410" font-family="Segoe UI, Arial, sans-serif" font-size="17" fill="#7dd3fc" text-anchor="middle">http://lvh.me:4011/?view=stage</text>
+    <text x="40" y="445" font-family="Segoe UI, Arial, sans-serif" font-size="17" fill="#e2e8f0">• Khung dọc chuẩn 1080 × 1920</text>
+    <text x="40" y="475" font-family="Segoe UI, Arial, sans-serif" font-size="17" fill="#e2e8f0">• Vượt rào chặn localhost bằng lvh.me</text>
+    <text x="40" y="505" font-family="Segoe UI, Arial, sans-serif" font-size="17" fill="#e2e8f0">• Bảng xếp hạng 👑 Khách Quen VIP</text>
+    <text x="40" y="535" font-family="Segoe UI, Arial, sans-serif" font-size="17" fill="#e2e8f0">• Dải 8 món quà &amp; thanh tiến độ trần phở</text>
+
+    <!-- Multi-Game Suite -->
+    <rect x="24" y="580" width="352" height="210" rx="16" fill="#172033" stroke="#a855f7" stroke-width="2" />
+    <text x="200" y="617" font-family="Segoe UI, Arial, sans-serif" font-size="21" font-weight="800" fill="#d8b4fe" text-anchor="middle">Hệ Sinh Thái Mở Rộng Đi Kèm</text>
+    <text x="40" y="652" font-family="Segoe UI, Arial, sans-serif" font-size="17" fill="#e2e8f0">• Desktop Game Desk (desktop/app.py)</text>
+    <text x="40" y="682" font-family="Segoe UI, Arial, sans-serif" font-size="17" fill="#e2e8f0">• Cloudflare Quick Tunnel (Read-only)</text>
+    <text x="40" y="712" font-family="Segoe UI, Arial, sans-serif" font-size="17" fill="#e2e8f0">• Kèm 4 mini-game: Boon, Ganesha,</text>
+    <text x="40" y="740" font-family="Segoe UI, Arial, sans-serif" font-size="17" fill="#e2e8f0">  Alms, Ramwong &amp; 1.851 Gift Icons</text>
+    <text x="40" y="770" font-family="Segoe UI, Arial, sans-serif" font-size="17" fill="#fde68a">• Web Portal + Gift Layout Editor</text>
+  </g>
+
+  <!-- Connectors -->
+  <line x1="485" y1="320" x2="540" y2="320" stroke="#f59e0b" stroke-width="4" marker-end="url(#arrowGold)" />
+  <line x1="485" y1="600" x2="540" y2="360" stroke="#38bdf8" stroke-width="4" marker-end="url(#arrowBlue)" />
+  <line x1="995" y1="300" x2="1050" y2="300" stroke="#f59e0b" stroke-width="4" marker-end="url(#arrowGold)" />
+  <line x1="995" y1="610" x2="1050" y2="610" stroke="#34d399" stroke-width="4" marker-end="url(#arrowGreen)" />
+  <line x1="1475" y1="300" x2="1530" y2="230" stroke="#38bdf8" stroke-width="4" marker-end="url(#arrowBlue)" />
+  <line x1="1475" y1="450" x2="1530" y2="450" stroke="#f59e0b" stroke-width="4" marker-end="url(#arrowGold)" />
+
+  <!-- Footer -->
+  <text x="1000" y="1058" font-family="Segoe UI, Arial, sans-serif" font-size="22" font-weight="700" fill="#fde68a" text-anchor="middle">Duong Birken • https://duongbirken.deta.vn • https://github.com/duongbirken2510/LIVE-PHO-TIKTOK</text>
+</svg>

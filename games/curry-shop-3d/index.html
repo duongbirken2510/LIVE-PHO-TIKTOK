@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<script>
+const _sp=new URLSearchParams(location.search);
+if(_sp.get("lite")==="1")document.documentElement.classList.add("lite");
+if(_sp.get("view")==="stage"||_sp.has("overlay"))document.documentElement.classList.add("is-stage");
+</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Phở Cô Ba 3D · Admin & TikTok LIVE</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css?v=22">
+</head>
+<body>
+<button id="stage-unblock" class="stage-unblock" hidden>🔊 Bấm vào đây để bật tiếng</button>
+
+<div class="dashboard-shell">
+ <div class="dashboard-grid">
+  <!-- CỘT TRÁI: TRANG ĐIỀU KHIỂN ĐỒNG NHẤT LIVE-TRANGNGUYEN -->
+  <aside class="admin-col">
+   <!-- CARD 1: Kết nối TikTok LIVE -->
+   <section class="adm-card">
+    <div class="adm-between adm-mb-sm">
+     <h2 class="adm-card-title" style="margin:0">Kết nối TikTok LIVE</h2>
+     <button id="btn-kill-server" class="adm-btn adm-btn-danger" type="button" title="Đóng toàn bộ tiến trình Node/TTS và giải phóng hoàn toàn cổng 4011">🔌 Tắt Live & Giải phóng Port 4011</button>
+    </div>
+    <div class="adm-row">
+     <input id="tiktok-user" class="adm-input flex-1" placeholder="username TikTok (không cần @)" maxlength="50">
+     <button id="btn-connect" class="adm-btn adm-btn-primary" type="button">Kết nối</button>
+     <button id="btn-disconnect" class="adm-btn adm-btn-ghost" type="button">Ngắt</button>
+    </div>
+    <div class="adm-status-line">
+     Trạng thái: <span id="tiktok-status" class="text-slate-400">Chưa kết nối</span>
+     <span id="bridge" class="bridge-pill" title="Cầu nối TikFinity phụ trợ"></span>
+    </div>
+    <div id="tiktok-msg" class="adm-msg" hidden></div>
+    <div class="adm-link-box">
+     <div>Link cho TikTok LIVE Studio: <b id="stage-url-text" class="text-slate-200">http://lvh.me:4011/?view=stage</b> · 1080 × 1920. Chỉ trang đó phát tiếng.</div>
+     <div class="adm-link-actions">
+      <button id="btn-copy-stage" class="adm-mini-btn" type="button">📋 Sao chép link</button>
+      <a href="/?view=stage" target="_blank" class="adm-mini-btn">↗ Mở trang Stage</a>
+     </div>
+    </div>
+   </section>
+
+   <!-- CARD 2: Giọng đọc trên stage -->
+   <section class="adm-card">
+    <h2 class="adm-card-title">Giọng đọc trên stage</h2>
+    <div class="adm-subbox">
+     <div class="adm-between">
+      <span class="font-medium text-slate-200">Bộ giọng đọc Cô Ba:</span>
+      <span id="tts-badge" class="adm-badge adm-badge-blue">🔵 Đang dùng Microsoft Edge (Hoài My)</span>
+     </div>
+     <select id="seller-voice" class="adm-select"></select>
+     <p id="seller-status" class="adm-voice-log">Sẵn sàng đọc kịch bản làm phở & chào khách</p>
+    </div>
+
+    <div class="adm-row adm-mb">
+     <span class="text-sm">Tên kênh: <b id="lbl-channel-name" class="text-amber-300">Phở Cô Ba</b></span>
+     <input id="inp-channel-name" class="adm-input flex-1" placeholder="Đổi tên quán mà giọng đọc xưng..." maxlength="40">
+     <button id="btn-save-channel" class="adm-btn adm-btn-primary" type="button">Lưu tên</button>
+    </div>
+
+    <div class="adm-row">
+     <input id="inp-speak-now" class="adm-input flex-1" placeholder="Gõ câu muốn Cô Ba đọc ngay..." maxlength="300">
+     <button id="btn-speak-now" class="adm-btn adm-btn-primary" type="button">Đọc ngay</button>
+    </div>
+
+    <div class="adm-row adm-mt">
+     <span class="text-sm text-slate-300">Tốc độ:</span>
+     <button class="adm-btn adm-btn-ghost rate-btn" data-rate="0.85" type="button">0.85×</button>
+     <button class="adm-btn adm-btn-ghost rate-btn is-active" data-rate="1" type="button">1×</button>
+     <button class="adm-btn adm-btn-ghost rate-btn" data-rate="1.15" type="button">1.15×</button>
+     <button class="adm-btn adm-btn-ghost rate-btn" data-rate="1.3" type="button">1.3×</button>
+     <button id="seller-preview" class="adm-btn adm-btn-ghost" type="button">🔊 Nghe câu chào</button>
+     <button id="btn-reset-game" class="adm-btn adm-btn-danger" type="button">Reset game</button>
+    </div>
+   </section>
+
+   <!-- CARD 3: Giả lập (test khi chưa live) -->
+   <section class="adm-card">
+    <h2 class="adm-card-title">Giả lập (test khi chưa live)</h2>
+    <div class="adm-row adm-mb">
+     <span class="text-xs text-slate-400">Tên người thử (để trống = tên ngẫu nhiên):</span>
+     <input id="viewer" class="adm-input flex-1" value="Anh Minh Đẹp Trai" placeholder="Tên người xem giả lập..." maxlength="40">
+    </div>
+    <div class="adm-wrap-btns">
+     <button id="sim-join" class="adm-btn adm-btn-ghost" type="button">👋 Người vào</button>
+     <button id="sim-chat-order" class="adm-btn adm-btn-ghost" type="button">💬 Comment gọi phở</button>
+     <button id="sim-chat-praise" class="adm-btn adm-btn-ghost" type="button">💬 Comment khen ngon</button>
+     <button id="sim-rose5" class="adm-btn adm-btn-ghost" type="button">🌹 5 Hoa hồng</button>
+     <button id="sim-special" class="adm-btn adm-btn-ghost" type="button">🕊️ Phở Đặc Biệt (ngồi bàn)</button>
+     <button id="sim-big-gift" class="adm-btn adm-btn-ghost" type="button">🌌 Quà to (Bao Trọn Quán)</button>
+     <button id="sim-combo3" class="adm-btn adm-btn-ghost" type="button">🔁 1 người tặng 3 lần liền</button>
+     <button id="sim-follow" class="adm-btn adm-btn-ghost" type="button">➕ Follow</button>
+     <button id="sim-like" class="adm-btn adm-btn-ghost" type="button">❤️ 100 tim</button>
+    </div>
+    <p class="adm-hint">Sự kiện giả đi tới mọi trang đang mở, kể cả stage trong LIVE Studio.</p>
+   </section>
+
+   <!-- CARD 4: Điều khiển riêng của game Quán Phở 3D (đồng nhất GameControls.tsx) -->
+   <section class="adm-card adm-game-controls">
+    <div class="adm-game-heading">Phở Cô Ba · Quán Phở Đêm 3D</div>
+    <div class="adm-two-cols">
+     <label class="adm-field">
+      <span>Chữ trên biển hiệu 3D (tối đa 34 ký tự)</span>
+      <input id="inp-bien-hieu" class="adm-input-dark" maxlength="34" placeholder="PHỞ BÒ GIA TRUYỀN • CÔ BA">
+     </label>
+     <label class="adm-field">
+      <span>Tên quán trên góc màn hình (tối đa 30 ký tự)</span>
+      <input id="inp-ten-quan" class="adm-input-dark" maxlength="30" placeholder="Phở Cô Ba">
+     </label>
+    </div>
+    <div class="adm-row adm-mt">
+     <button id="btn-save-sign" class="adm-btn adm-btn-emerald" type="button">💾 Lưu tên</button>
+     <span id="lbl-save-sign" class="text-xs text-slate-400">Để trống là dùng tên mặc định</span>
+    </div>
+
+    <div class="adm-wrap-btns adm-mt">
+     <button id="demo" class="adm-btn adm-btn-amber-solid" type="button">▶ Tự động chạy khách mẫu</button>
+     <button id="sound" class="adm-btn adm-btn-ghost is-active" type="button">🔊 Âm thanh quán: BẬT</button>
+     <button id="music-toggle" class="adm-btn adm-btn-ghost is-active" type="button">♫ Nhạc nền: BẬT</button>
+     <button id="seller-toggle" class="adm-btn adm-btn-ghost is-active" type="button">🗣 Giọng Cô Ba: BẬT</button>
+     <button id="full" class="adm-btn adm-btn-ghost" type="button">⛶ Toàn màn hình</button>
+     <button id="btn-stop-live" class="adm-btn adm-btn-rose-solid" type="button">👋 Cô Ba chào tạm biệt</button>
+     <button id="btn-kill-server-2" class="adm-btn adm-btn-danger" type="button">🔌 Tắt Server (Giải phóng Port)</button>
+    </div>
+
+    <!-- Hẹn giờ tự tắt Live giống hệt LIVE-TRANGNGUYEN -->
+    <div class="adm-timer-box">
+     <div class="adm-between">
+      <span class="text-xs text-slate-300">⏰ Hẹn giờ tự động dừng game & Cô Ba đọc lời chào tắt Live:</span>
+      <span id="lbl-timer-status" class="text-xs text-slate-500">Chưa hẹn giờ</span>
+     </div>
+     <div class="adm-wrap-btns adm-mt-sm">
+      <button class="adm-timer-pill" data-min="15" type="button">+15 phút</button>
+      <button class="adm-timer-pill" data-min="30" type="button">+30 phút</button>
+      <button class="adm-timer-pill" data-min="60" type="button">+60 phút</button>
+      <button class="adm-timer-pill" data-min="90" type="button">+90 phút</button>
+      <button class="adm-timer-pill" data-min="120" type="button">+120 phút</button>
+      <button id="btn-cancel-timer" class="adm-timer-cancel" type="button" hidden>✖ Hủy hẹn giờ</button>
+     </div>
+    </div>
+
+    <!-- Công tắc Kịch bản & Âm lượng -->
+    <div class="script-toggles">
+     <label class="check-row"><input id="opt-order-script" type="checkbox" checked><span>Đọc kịch bản nhận đơn & trần phở khi khách tặng quà</span></label>
+     <label class="check-row"><input id="opt-greet-join" type="checkbox" checked><span>Tự chào khách vào phòng, hỏi ăn gì & kêu gọi thả tim (chống spam 14s)</span></label>
+     <label class="check-row"><input id="opt-idle-cta" type="checkbox" checked><span>Tự rao hàng kêu gọi tương tác khi quán vắng (mỗi 40s)</span></label>
+     <div class="adm-sliders">
+      <label>Nhạc nền <input id="music-volume" type="range" min="0" max="1" step="0.02" value="0.12"><b id="lbl-music-vol" class="vol-pct">12%</b></label>
+      <label>Tiếng bếp <input id="sound-volume" type="range" min="0" max="1" step="0.05" value="0.35"><b id="lbl-sfx-vol" class="vol-pct">35%</b></label>
+      <label>Giọng Cô Ba <input id="seller-volume" type="range" min="0" max="1" step="0.05" value="1"><b id="lbl-voice-vol" class="vol-pct">100%</b></label>
+      <button id="sound-test" class="adm-mini-btn" type="button">♫ Thử chuông</button>
+     </div>
+     <p id="sound-status" class="text-xs text-slate-400" style="margin:2px 0 0">Âm thanh quán đang BẬT · Đồng bộ trực tiếp sang trang Stage (?view=stage)</p>
+    </div>
+
+    <div class="text-xs text-slate-400 adm-mb-sm">Thực đơn 8 món gắn quà TikTok (bấm để gọi thử từng món):</div>
+    <div id="actions"></div>
+   </section>
+
+   <!-- CARD 5: Thông tin dự án & Tác giả (Info) giống hệt LIVE-TRANGNGUYEN -->
+   <section class="adm-card">
+    <h2 class="adm-card-title">Thông tin dự án & Tác giả (Info)</h2>
+    <div class="adm-info-body">
+     <p>
+      <b class="text-amber-300">Phở Cô Ba 3D (Live-Pho v2.0)</b> — Game mô phỏng quán phở đêm 3D tương tác tự động 100% cho TikTok LIVE, phát triển và nâng cấp bởi
+      <a href="https://duongbirken.deta.vn" target="_blank" rel="noreferrer" class="adm-author-link">Duong Birken</a>.
+     </p>
+     <div class="adm-wrap-btns adm-mt-sm">
+      <a href="https://duongbirken.deta.vn" target="_blank" rel="noreferrer" class="adm-btn adm-btn-primary" style="text-decoration:none;font-size:12px">🌐 Website: duongbirken.deta.vn</a>
+      <a href="/?view=stage" target="_blank" rel="noreferrer" class="adm-btn adm-btn-ghost" style="text-decoration:none;font-size:12px">📺 Mở màn hình Stage (1080 × 1920)</a>
+     </div>
+    </div>
+   </section>
+  </aside>
+
+  <!-- CỘT PHẢI: KHUNG XEM TRƯỚC STAGE 9:16 (maxHeight 720 giống LIVE-TRANGNGUYEN) -->
+  <div class="preview-col">
+   <div class="preview-header">
+    <span class="preview-label" id="preview-caption">Xem trước (im lặng)</span>
+    <button id="btn-admin-monitor" class="adm-mini-btn" type="button" title="Bật/tắt loa nghe thử trực tiếp trên tab Admin này">🔈 Bật loa tại Admin</button>
+   </div>
+   <div class="preview-frame">
+    <section class="game" id="game">
+     <canvas id="scene" aria-label="Quán phở 3D Việt Nam, Cô Ba đứng sau quầy nồi nước lèo nghi ngút khói, khách xếp hàng phía trước"></canvas>
+     <header><span class="live">● BẾP PHỞ TRỰC TIẾP</span><h1 id="stage-title">Phở Cô Ba<span>Phở Bò Gia Truyền</span></h1><p>Tặng quà TikTok để vào quán gọi tô phở nóng hổi!</p></header>
+     <div class="top-stats"><div><small>Khách đợi quầy</small><b id="cooked">0 <em>người</em></b></div><div><small>Đã phục vụ</small><b id="bags">0 <em>tô</em></b></div></div>
+     <button id="sound-overlay" class="sound-overlay">🔇 Bật tiếng</button>
+     <div class="queue-caption">Xếp hàng gọi phở ↓</div>
+     <div id="customer-labels" aria-hidden="true"></div>
+     <div id="floating-hearts" aria-hidden="true"></div>
+     <div class="order"><small>Đơn đang trần phở</small><b id="order">Đang chờ khách mở hàng</b><p id="dish-detail">Nước lèo hầm xương 12h · 6 khay nguyên liệu tươi</p><div><i id="progress"></i></div></div>
+     <div id="notice" role="status">Chào mừng đến Quán Phở Đêm Cô Ba 🍜</div>
+     <div class="bottom"><div class="connection" id="connection">Đang kết nối bếp phở…</div><div class="gift-strip" id="gift-strip"></div><section class="leaders"><span>👑 Khách Quen VIP</span><div id="leaders">Chờ vị khách đầu tiên</div></section><footer>Trò chơi tương tác trực tiếp · Quà TikTok là hiệu ứng giải trí trên sóng LIVE</footer></div>
+     <div class="celebration" id="celebration" hidden><small>ĐẠI GIA BAO TRỌN QUÁN!</small><strong>Đa tạ Đại Gia ủng hộ!</strong><span>Cả quán ấm bụng · Chúc phát tài vạn sự như ý 🍜✨</span></div>
+     <div id="render-error" hidden>Không khởi tạo được đồ họa 3D. Vui lòng mở bằng Chrome/Edge và bật Tăng tốc phần cứng.</div>
+    </section>
+   </div>
+  </div>
+ </div>
+</div>
+<script type="module" src="game.js?v=22"></script>
+</body>
+</html>

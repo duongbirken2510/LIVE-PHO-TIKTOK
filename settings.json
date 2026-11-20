@@ -1,0 +1,14 @@
+{
+  "channelName": "Phở Cô Ba",
+  "tiktokUser": "",
+  "bienHieu": "",
+  "tenQuan": "",
+  "ttsVoice": "edge:vi-VN-HoaiMyNeural",
+  "ttsRate": 1,
+  "masterEnabled": true,
+  "musicEnabled": true,
+  "voiceEnabled": true,
+  "musicVolume": 0.12,
+  "sfxVolume": 0.35,
+  "voiceVolume": 1
+}
