@@ -13,6 +13,7 @@ Thumbs.db
 bin/
 tools/
 *.exe
+!Pho-Co-Ba-3D.exe
 *.zip
 
 # Credentials must never be committed

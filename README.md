@@ -13,6 +13,8 @@
   <p>
     🌐 <b>Website Tác giả / Author:</b> <a href="https://duongbirken.deta.vn"><b>Duong Birken — https://duongbirken.deta.vn</b></a>
     &nbsp;·&nbsp;
+    💿 <b>Tải Bộ Cài Windows 1-Click (.EXE):</b> <a href="https://github.com/duongbirken2510/LIVE-PHO-TIKTOK/releases/latest/download/Pho-Co-Ba-3D-Setup-v2.0.exe"><b>Pho-Co-Ba-3D-Setup-v2.0.exe</b></a>
+    &nbsp;·&nbsp;
     📖 <b>Hướng dẫn Sử dụng A–Z / User Guide:</b> <a href="docs/USER_GUIDE.md"><b>docs/USER_GUIDE.md</b></a>
     &nbsp;·&nbsp;
     📘 <b>Hồ sơ Công nghệ 10 Chương / Technical Whitepaper:</b> <a href="info/Introduce_LivePhoTikTok.md"><b>info/Introduce_LivePhoTikTok.md</b></a>
@@ -135,16 +137,21 @@ Quán có **6 khay nguyên liệu inox âm quầy** kết hợp thành **8 món 
 
 > 📖 **Xem Cẩm nang Hướng dẫn Sử dụng Toàn tập từ A–Z (kèm hình ảnh từng bước):** [**`docs/USER_GUIDE.md`**](docs/USER_GUIDE.md)
 
-### Bước 1: Khởi chạy quán phở chỉ với 1 cú nhấp đúp
-1. Cài đặt **Node.js (bản 20 hoặc 22 LTS trở lên)** từ [https://nodejs.org](https://nodejs.org).
-2. Tải dự án về máy:
-   ```bash
-   git clone https://github.com/duongbirken2510/LIVE-PHO-TIKTOK.git
-   cd LIVE-PHO-TIKTOK
-   ```
-3. Nhấp đúp vào file **`BAT-LIVE.bat`** (hoặc **`CHAY_QUAN_PHO_3D.bat`**) ở thư mục gốc:
-   - Lần đầu chạy, script tự động cài đặt `node_modules` (`tiktok-live-connector` & `msedge-tts`).
-   - Server khởi động tại cổng **`4011`** (cầu nối TikFinity ở cổng **`4012`**) và tự mở trình duyệt vào trang Admin **`http://localhost:4011`**.
+### Bước 1: Khởi chạy quán phở chỉ với 1 cú nhấp đúp (Hỗ trợ cả Bộ cài `.EXE` 1-Click & Mã nguồn)
+
+- **Cách A — Dành cho người dùng không rành GitHub / Node.js (Khuyên dùng — Chỉ 1 file `.EXE` duy nhất):**
+  1. Tải bộ cài đặt tự động: **[`Pho-Co-Ba-3D-Setup-v2.0.exe`](https://github.com/duongbirken2510/LIVE-PHO-TIKTOK/releases/latest/download/Pho-Co-Ba-3D-Setup-v2.0.exe)** *(đã nhúng sẵn Node.js Runtime và toàn bộ thư viện, không cần cài thêm bất cứ phần mềm nào)*.
+  2. Mở file vừa tải về (nếu Windows SmartScreen hỏi thì bấm **More info** ➔ **Run anyway**) rồi bấm nút **`🚀 CÀI ĐẶT NGAY (1-CLICK)`**.
+  3. Phần mềm tự tạo biểu tượng **`Phở Cô Ba 3D - TikTok LIVE`** ngoài màn hình Desktop và tự mở ngay cửa sổ điều khiển `http://localhost:4011`!
+
+- **Cách B — Dành cho người tải mã nguồn từ GitHub:**
+  1. Cài đặt **Node.js (bản 20 hoặc 22 LTS trở lên)** từ [https://nodejs.org](https://nodejs.org).
+  2. Tải dự án về máy:
+     ```bash
+     git clone https://github.com/duongbirken2510/LIVE-PHO-TIKTOK.git
+     cd LIVE-PHO-TIKTOK
+     ```
+  3. Nhấp đúp vào **`Pho-Co-Ba-3D.exe`** (chạy ẩn không hiện cửa sổ CMD đen) hoặc **`BAT-LIVE.bat`** (hoặc **`CHAY_QUAN_PHO_3D.bat`**) ở thư mục gốc.
 
 ### Bước 2: Đưa màn hình Quán Phở 3D lên TikTok LIVE Studio (`1080 × 1920`)
 1. Trên trang Admin `http://localhost:4011`, bấm nút **`📋 Sao chép link`** để chép địa chỉ Stage:

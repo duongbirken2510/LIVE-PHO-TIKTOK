@@ -31,15 +31,24 @@
 
 ## 1. Bước 1: Tải & Khởi chạy nhanh 1-Click trên Windows, macOS và Linux
 
-### 💻 A. Trên máy tính Windows 10 / 11 (64-bit) — Khởi chạy 1-Click bằng `BAT-LIVE.bat`
+### 💻 A. Trên máy tính Windows 10 / 11 (64-bit) — 2 Cách Khởi Chạy Siêu Tốc
+
+#### ⭐ Cách 1 (Khuyên dùng cho người không rành GitHub / Kỹ thuật): Cài bằng 1 file `.EXE` duy nhất
+1. Tải bộ cài đặt tự động đã nhúng sẵn toàn bộ Node.js và thư viện: **[`Pho-Co-Ba-3D-Setup-v2.0.exe`](https://github.com/duongbirken2510/LIVE-PHO-TIKTOK/releases/latest/download/Pho-Co-Ba-3D-Setup-v2.0.exe)**.
+2. Nhấp đúp vào file `Pho-Co-Ba-3D-Setup-v2.0.exe`. Nếu Windows hiện bảng xanh *Windows protected your PC (SmartScreen)*:
+   - Bấm vào chữ **More info** (*Thông tin thêm*).
+   - Bấm nút **Run anyway** (*Vẫn chạy*).
+3. Bấm nút màu cam **`🚀 CÀI ĐẶT NGAY (1-CLICK)`** trên cửa sổ cài đặt.
+4. Bộ cài sẽ tự tạo biểu tượng **`Phở Cô Ba 3D - TikTok LIVE`** ngoài màn hình Desktop và mở ngay cửa sổ điều khiển ứng dụng tại **`http://localhost:4011`**!
+
+#### 🛠️ Cách 2 (Dành cho người tải thư mục mã nguồn từ GitHub): Khởi chạy bằng `Pho-Co-Ba-3D.exe` hoặc `BAT-LIVE.bat`
 1. Cài đặt **Node.js (bản 20 hoặc 22 LTS trở lên)** tại [https://nodejs.org](https://nodejs.org) (nếu máy bạn chưa cài).
 2. Tải bộ mã nguồn dự án về máy bằng `git clone` hoặc tải file **Download ZIP** từ GitHub rồi giải nén ra ổ đĩa (ví dụ `D:\LIVE-PHO-TIKTOK`):
    ```bash
    git clone https://github.com/duongbirken2510/LIVE-PHO-TIKTOK.git
    cd LIVE-PHO-TIKTOK
    ```
-3. Tại thư mục gốc của dự án, **nhấp đúp chuột vào file `BAT-LIVE.bat`** (hoặc `CHAY_QUAN_PHO_3D.bat`):
-   - **Nếu Windows hiện bảng xanh *Windows protected your PC (SmartScreen)*:** Bấm vào chữ **More info** (*Thông tin thêm*) ➔ bấm nút **Run anyway** (*Vẫn chạy*).
+3. Tại thư mục gốc của dự án, **nhấp đúp chuột vào file `Pho-Co-Ba-3D.exe`** (chạy gọn không hiện cửa sổ CMD) hoặc **`BAT-LIVE.bat`** (`CHAY_QUAN_PHO_3D.bat`):
    - Lần đầu tiên mở, phần mềm sẽ tự động tải thư viện kết nối TikTok LIVE và giọng đọc Microsoft Edge AI trong khoảng 10–15 giây.
    - Ngay sau đó, trình duyệt sẽ tự động mở **Trang Admin Điều Khiển** tại địa chỉ: **`http://localhost:4011`**.
 

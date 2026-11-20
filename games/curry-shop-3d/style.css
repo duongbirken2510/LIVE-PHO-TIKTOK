@@ -135,3 +135,42 @@ html.is-stage .admin-col,body.overlay .admin-col,html.is-stage .preview-label,bo
 html.is-stage .preview-col,body.overlay .preview-col{position:static}
 html.is-stage .preview-frame,body.overlay .preview-frame{width:auto;height:auto;border:0;border-radius:0;box-shadow:none;overflow:visible;background:transparent}
 html.is-stage .sound-overlay,body.overlay .sound-overlay{display:none}
+
+/* ---------- Ultra-Clean 3D Stage HUD (Unobstructed Kitchen, 6 Trays & 4 Dining Tables) ---------- */
+.game header{top:8px;left:10px;display:flex;align-items:center;gap:7px;background:rgba(45,16,12,.76);backdrop-filter:blur(5px);border:1px solid rgba(244,199,108,.45);border-radius:999px;padding:4px 11px 4px 7px;box-shadow:0 4px 14px rgba(0,0,0,.35)}
+.game header .live{padding:3px 7px;border-radius:999px;font-size:8px;letter-spacing:1px}
+.game header h1{margin:0;font-size:14.5px;line-height:1.1;display:flex;align-items:baseline;gap:6px;text-shadow:none;white-space:nowrap}
+.game header h1 span,.game header p,.game .queue-caption,.game .connection,.game footer{display:none!important}
+
+.game .top-stats{top:8px;right:10px;display:flex;gap:5px}
+.game .top-stats>div{min-width:0;padding:3px 8px;border-radius:999px;background:rgba(45,16,12,.76);backdrop-filter:blur(5px);border:1px solid rgba(244,199,108,.45);display:flex;align-items:center;gap:4px}
+.game .top-stats small{font-size:8.5px;color:#fcd34d;white-space:nowrap}
+.game .top-stats b{font-size:12.5px;color:#fff}
+.game .top-stats em{font-size:8.5px;color:#e2e8f0}
+
+.game .sound-overlay{top:42px;right:10px;padding:3px 8px;font-size:9.5px;border-radius:999px;opacity:.85}
+
+/* Region 1: Compact Horizontal Glass Pill above awning (auto-hides when idle) */
+.game .order{top:42px;left:10px;right:96px;width:auto;padding:5px 10px 6px;background:rgba(42,15,11,.82);backdrop-filter:blur(6px);color:#fff7e0;border:1px solid rgba(251,191,36,.55);border-radius:10px;box-shadow:0 4px 14px rgba(0,0,0,.35);transition:opacity .25s,transform .25s;pointer-events:none}
+.game .order.is-idle{opacity:0;transform:translateY(-5px)}
+.game .order small{display:none}
+.game .order b{font-size:11px;line-height:1.25;margin:0;color:#fde68a;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.game #dish-detail{font-size:9.5px;line-height:1.25;color:#f1f5f9;margin:1px 0 4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.game .order>div{height:3.5px;background:rgba(255,255,255,.18);border-radius:2px}
+.game .order i{background:linear-gradient(90deg,#f59e0b,#ef4444)}
+
+/* Region 2: Ultra-Compact Micro-Pills at Bottom (frees 190px of 3D dining floor) */
+.game #notice{top:auto;bottom:86px;left:12px;right:12px;padding:4px 12px;background:rgba(45,16,12,.82);backdrop-filter:blur(5px);border:1px solid rgba(244,199,108,.5);border-radius:999px;font-size:10.5px;font-weight:600;color:#fff7e0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;box-shadow:0 4px 12px rgba(0,0,0,.35);pointer-events:none;transition:bottom .2s}
+.game.hud-hidden #notice{bottom:28px}
+.game .bottom{padding:4px 8px 6px;background:linear-gradient(transparent,rgba(25,8,6,.82) 32%)}
+.game .gift-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:4px}
+.game.hud-hidden .gift-strip{display:none}
+.game .gift-strip>div{display:flex;align-items:center;gap:4px;text-align:left;background:rgba(55,18,14,.78);backdrop-filter:blur(4px);border:1px solid rgba(240,194,107,.38);border-radius:7px;padding:3px 5px;min-width:0}
+.game .gift-strip .tiktok-gift{width:18px;height:18px;margin:0;flex-shrink:0}
+.game .gift-strip .gift-meta{min-width:0;flex:1}
+.game .gift-strip b{min-height:0;display:block;font-size:8.8px;line-height:1.15;margin:0;padding:0;color:#fff7e0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.game .gift-strip small{display:block;font-size:7.5px;line-height:1.1;color:#fcd34d;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.game .leaders{margin-top:4px;font-size:9.5px;gap:8px;padding:1px 4px}
+.game .customer-name{font-size:11.5px;padding:3px 8px;border-radius:999px;background:rgba(45,15,11,.85)}
+.game .customer-name.is-vip{border-color:#fbbf24;color:#fde68a;box-shadow:0 2px 10px rgba(245,158,11,.35)}
+

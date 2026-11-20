@@ -744,11 +744,23 @@ const server = http.createServer(async (req, res) => {
   return;
  }
 
+ if (url.pathname === '/api/models' && req.method === 'GET') {
+  const modelsDir = path.join(root, 'assets', 'models');
+  const available = {};
+  for (const key of ['coba', 'customer-female', 'customer-male', 'customer-vip']) {
+   available[key] = fs.existsSync(path.join(modelsDir, `${key}.glb`));
+  }
+  sendJson(200, {ok: true, models: available});
+  return;
+ }
+
  const files = {'/': 'index.html', '/index.html': 'index.html', '/style.css': 'style.css', '/game.js': 'game.js', '/vendor/three.module.js': 'vendor/three.module.js'};
+ if (/^\/vendor\/[a-zA-Z0-9._-]+\.js$/.test(url.pathname) && fs.existsSync(path.join(root, url.pathname.slice(1)))) files[url.pathname] = url.pathname.slice(1);
  if (/^\/assets\/[a-f0-9]{64}\.(png|webp|jpg|mp3)$/.test(url.pathname) && fs.existsSync(path.join(root, url.pathname.slice(1)))) files[url.pathname] = url.pathname.slice(1);
+ if (/^\/assets\/models\/[a-zA-Z0-9_-]+\.glb$/.test(url.pathname) && fs.existsSync(path.join(root, url.pathname.slice(1)))) files[url.pathname] = url.pathname.slice(1);
  if (req.method !== 'GET' || !files[url.pathname]) { res.writeHead(404); res.end(); return; }
  const file = files[url.pathname];
- const types = {'.html': 'text/html; charset=utf-8', '.css': 'text/css; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.png': 'image/png', '.webp': 'image/webp', '.jpg': 'image/jpeg', '.mp3': 'audio/mpeg'};
+ const types = {'.html': 'text/html; charset=utf-8', '.css': 'text/css; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.png': 'image/png', '.webp': 'image/webp', '.jpg': 'image/jpeg', '.mp3': 'audio/mpeg', '.glb': 'model/gltf-binary'};
  res.writeHead(200, {'Content-Type': types[path.extname(file)], 'Cache-Control': file.startsWith('assets/') ? 'public, max-age=31536000, immutable' : 'no-cache'});
  fs.createReadStream(path.join(root, file)).pipe(res);
 });
